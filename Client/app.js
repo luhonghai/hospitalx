@@ -12,11 +12,15 @@
 
 Ext.application({
     name: 'HPX',
-    baseUrl: 'http://localhost:8080',
     requires: [
-        'Ext.MessageBox'
+        'Ext.MessageBox',
+        'HPX.config.Runtime'
     ],
 
+    models: [
+        'Treatment',
+        'Patient'
+    ],
     views: [
         'Main',
         'menu.SlideMenu'
@@ -58,7 +62,25 @@ Ext.application({
             side: 'left',
             reveal: true
         });
-
+        HPX.model.Patient.load('df7d2047-6a7c-471e-af4f-560ae7be087a', function(p) {
+				console.log(p.get('firstName'));
+				p.treatments().add({
+					type: 'testing'
+				});
+				p.treatments().sync();
+		});
+		/**
+			Ext.create('HPX.model.Patient', {
+            firstName: 'Hai',
+            lastName: 'Lu',
+            age: '26',
+            gender: true,
+            description: 'description testing',
+            address : 'Hanoi'
+        });
+		**/
+		
+        //patient.save();
     },
 
     onUpdated: function() {

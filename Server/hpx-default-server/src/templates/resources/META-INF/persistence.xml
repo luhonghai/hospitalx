@@ -7,6 +7,7 @@
 	<!-- Persistence "unit" -->
 	<persistence-unit name="HPX-CORE">
 		<class>com.luhonghai.hpx.jdo.Patient</class>
+        <class>com.luhonghai.hpx.jdo.Treatment</class>
 		<properties>
 			<!-- ENABLE THESE FOR H2 -->
 			<!--property name="javax.jdo.option.ConnectionURL" value="jdbc:h2:mem:nucleus1"/> 
