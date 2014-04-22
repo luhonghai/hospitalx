@@ -36,10 +36,6 @@ public class Patient {
     @Persistent
     private Date createdDate;
 
-    @Persistent
-    @Element(column="patient_id")
-    private Collection<Treatment> treatments;
-
     public String getFirstName() {
         return firstName;
     }
@@ -102,13 +98,5 @@ public class Patient {
 
     public void setCreatedDate(Date createdDate) {
         this.createdDate = createdDate;
-    }
-
-    public Collection<Treatment> getTreatments() {
-        return treatments;
-    }
-
-    public void setTreatments(Collection<Treatment> treatments) {
-        this.treatments = treatments;
     }
 }

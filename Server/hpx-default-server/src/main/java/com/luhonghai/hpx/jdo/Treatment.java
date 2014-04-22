@@ -19,7 +19,7 @@ public class Treatment {
     @Persistent
     private Date createdDate;
 
-    @NotPersistent
+    @Persistent
     private String patient_id;
 
     public Date getCreatedDate() {
