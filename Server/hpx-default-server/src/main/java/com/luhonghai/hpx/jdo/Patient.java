@@ -36,7 +36,8 @@ public class Patient {
     @Persistent
     private Date createdDate;
 
-    @Persistent(mappedBy = "patient")
+    @Persistent
+    @Element(column="patient_id")
     private Collection<Treatment> treatments;
 
     public String getFirstName() {
