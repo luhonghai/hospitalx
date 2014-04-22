@@ -3,9 +3,7 @@
  */
 Ext.define('HPX.model.Patient', {
     extend: 'Ext.data.Model',
-    requires: [
-        'HPX.config.Runtime'
-    ],
+
     config: {
         fields: [
             {name: 'id' , type: 'string'},
@@ -15,15 +13,12 @@ Ext.define('HPX.model.Patient', {
             {name: 'gender' , type: 'boolean'},
             {name: 'description' , type: 'string'},
             {name: 'address' , type: 'string'},
-            {name: 'createdDate' , type: 'date'},
+            {name: 'createdDate' , type: 'date'}
         ],
 		hasMany: 'HPX.model.Treatment',
-		proxy: {
+        proxy: {
             type: 'rest',
-            url: 'http://localhost:8080/rest/api/core/com.luhonghai.hpx.jdo.Patient',
-            reader: {
-                type: 'json'
-            }
+            url: HPX.config.RestUtil.generateRestUrl('Patient')
         }
     }
 });

@@ -23,7 +23,7 @@ public class Treatment {
     private Date createdDate;
 
     @Persistent
-    private Patient patient;
+    private String patient_id;
 
     public Date getCreatedDate() {
         return createdDate;
@@ -49,11 +49,11 @@ public class Treatment {
         this.id = id;
     }
 
-    public Patient getPatient() {
-        return patient;
+    public String getPatient_id() {
+        return patient_id;
     }
 
-    public void setPatient(Patient patient) {
-        this.patient = patient;
+    public void setPatient_id(String patient_id) {
+        this.patient_id = patient_id;
     }
 }

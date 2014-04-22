@@ -1,9 +1,9 @@
 Ext.define('HPX.view.Main', {
-    extend: 'Ext.Panel',
+    extend: 'Ext.Container',
     xtype: 'main',
-    id: "mainboard",
     requires: [
-        'Ext.TitleBar'
+        'Ext.TitleBar',
+        'HPX.view.patient.List'
     ],
     config: {
         items: [{
@@ -14,6 +14,12 @@ Ext.define('HPX.view.Main', {
                 iconCls: 'list',
                 action: 'toggle-menu'
             }]
-        }]
+        }, {
+            xtype: 'patients',
+            store: 'Patients',
+            grouped: true,
+            pinHeaders: false
+        }
+        ]
     }
 });
