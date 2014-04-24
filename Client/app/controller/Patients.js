@@ -4,11 +4,18 @@
 
 Ext.define('HPX.controller.Patients', {
     extend: 'Ext.app.Controller',
-
+    required: [
+        'HPX.form.Patient'
+    ],
     config: {
         refs: {
+            mainContainer: 'main',
+            listPatients: 'patients',
             searchfield : 'patients searchfield',
-            btnAddNew : 'patients button[action=add-new]'
+            btnAddNew : 'main button[action=add-new]',
+            formPatient: 'form-patient',
+            btnResetForm: 'form-patient button[action=reset]',
+            btnSaveForm: 'form-patient button[action=save]'
         },
         control: {
             'searchfield' : {
@@ -18,12 +25,29 @@ Ext.define('HPX.controller.Patients', {
             'btnAddNew' : {
                 tap: 'onButtonAddNewTap',
                 click: 'onButtonAddNewTap'
+            },
+            'btnResetForm' : {
+                tap: 'onButtonResetTap',
+                click: 'onButtonResetTap'
+            },
+            'btnSaveForm' : {
+                tap: 'onButtonSaveTap',
+                click: 'onButtonSaveTap'
             }
         }
     },
 
     onButtonAddNewTap: function(ele, e) {
-        Ext.Msg.alert('Add new', 'you selected menu add new');
+        if (this.formPatient) {
+            this.formPatient.destroy();
+        }
+        this.formPatient = Ext.widget('form-patient');
+        if (!this.formPatient.patient) {
+
+            this.formPatient.patient = Ext.create('HPX.model.Patient');
+        }
+        this.getMainContainer().push(this.formPatient);
+
     },
 
     onSearchClearIconTap: function() {
@@ -73,6 +97,27 @@ Ext.define('HPX.controller.Patients', {
 
                 return (regexps.length && matched.indexOf(true) !== -1);
             });
+        }
+    },
+
+    onButtonResetTap: function(e) {
+        this.formPatient.reset();
+    },
+
+    onButtonSaveTap: function(e) {
+        var form = this.formPatient;
+        var main =  this.getMainContainer();
+        if (form.patient) {
+            form.updateRecord(form.patient,true);
+            form.patient.save({
+                success: function(p) {
+
+                    store = Ext.getStore('Patients');
+                    store.add(p);
+                    main.pop();
+                }
+            });
+
         }
     }
 

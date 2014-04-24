@@ -15,9 +15,10 @@ Ext.application({
     requires: [
         'Ext.MessageBox',
         'HPX.config.Runtime',
-        'HPX.config.RestUtil'
-    ],
-
+        'HPX.config.RestUtil',
+        'HPX.form.Patient'
+    ]
+    ,
     models: [
         'Treatment',
         'Patient'
@@ -59,18 +60,17 @@ Ext.application({
     launch: function() {
         // Destroy the #appLoadingIndicator element
         Ext.fly('appLoadingIndicator').destroy();
-
-        // Create basic panel
-        Ext.Viewport.add( {
-            xtype: 'patients',
-            store: 'Patients'
-        });
         var slideMenu = Ext.create('HPX.view.menu.SlideMenu');
         //Add side menu to viewport
         Ext.Viewport.setMenu(slideMenu, {
             side: 'left',
             reveal: true
         });
+        // Create basic panel
+        Ext.Viewport.add( {
+            xtype: 'main'
+        });
+
     },
 
     onUpdated: function() {

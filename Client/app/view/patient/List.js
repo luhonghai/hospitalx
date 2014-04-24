@@ -11,28 +11,41 @@ Ext.define('HPX.view.patient.List', {
     ],
     config: {
         title: 'Danh sách bệnh nhân',
+        store: 'Patients',
         ui: 'round',
-        emptyText: '<div style="margin-top: 20px; text-align: center">Không tìm thấy</div>',
+        emptyText: '<div style="margin-top: 20px; text-align: center">Không tìm thấy bệnh nhân</div>',
         itemCls: 'patient',
         variableHeights: true,
 
         grouped: true,
-        pinHeaders: false,
 
-        itemTpl: [
-            '<img class="avatar" src="resources/images/avatar/unknown-male.jpg">',
-            '<h3>{lastName} {firstName}</h3>',
-            '<h4>{address}</h4>'
-        ],
+        scrollToTopOnRefresh: false,
+
         plugins: [
-            { type: 'listpaging' },
-            { type: 'pullrefresh' }
+            //{ xclass: 'Ext.plugin.ListPaging' },
+            { xclass: 'Ext.plugin.PullRefresh' }
         ],
+
+        itemTpl:   new Ext.XTemplate(
+            [
+                '<img class="avatar" src="{[this.getAvatar(values)]}">',
+                '<h3>{lastName} {firstName}</h3>',
+                '<h4>Địa chỉ: {address}</h4>'
+            ].join('')
+            ,
+            {
+                getAvatar : function(values) {
+                    return 'resources/images/avatar/unknown-' + (values.gender ? 'male' : 'female') +'.jpg';
+                }
+            }
+        )
+         ,
+
 
         items: [
             {
                 xtype: 'toolbar',
-                docked: 'top',
+                docked: 'bottom',
 
                 items: [
                     {

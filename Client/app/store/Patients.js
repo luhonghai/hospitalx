@@ -6,12 +6,11 @@ Ext.define('HPX.store.Patients', {
 
     config: {
         model: 'HPX.model.Patient',
-
+        pageSize:9999,
         grouper: {
             groupFn: function(record) {
-                return record.get('firstName').substr(0,1);
-            },
-            sortProperty: 'firstName'
+                return record.get('firstName').substr(0,1).toUpperCase();
+            }
         },
         autoLoad: true,
         proxy: {
