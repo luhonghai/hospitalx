@@ -14,20 +14,29 @@ Ext.application({
     name: 'HPX',
     requires: [
         'Ext.MessageBox',
-        'HPX.config.Runtime'
-    ],
-
+        'HPX.config.Runtime',
+        'HPX.config.RestUtil',
+        'HPX.form.Patient'
+    ]
+    ,
     models: [
         'Treatment',
         'Patient'
     ],
     views: [
         'Main',
-        'menu.SlideMenu'
+        'menu.SlideMenu',
+        'patient.List'
     ],
 
     controllers: [
-        'menu.SlideMenu'
+        'menu.SlideMenu',
+        'Patients'
+    ],
+
+    stores: [
+        'Patients',
+        'Treatments'
     ],
 
     icon: {
@@ -51,36 +60,17 @@ Ext.application({
     launch: function() {
         // Destroy the #appLoadingIndicator element
         Ext.fly('appLoadingIndicator').destroy();
-
-        // Create basic panel
-        Ext.Viewport.add({
-            xtype: 'main'
-        });
         var slideMenu = Ext.create('HPX.view.menu.SlideMenu');
         //Add side menu to viewport
         Ext.Viewport.setMenu(slideMenu, {
             side: 'left',
             reveal: true
         });
-        HPX.model.Patient.load('df7d2047-6a7c-471e-af4f-560ae7be087a', function(p) {
-				console.log(p.get('firstName'));
-				p.treatments().add({
-					type: 'testing'
-				});
-				p.treatments().sync();
-		});
-		/**
-			Ext.create('HPX.model.Patient', {
-            firstName: 'Hai',
-            lastName: 'Lu',
-            age: '26',
-            gender: true,
-            description: 'description testing',
-            address : 'Hanoi'
+        // Create basic panel
+        Ext.Viewport.add( {
+            xtype: 'main'
         });
-		**/
-		
-        //patient.save();
+
     },
 
     onUpdated: function() {

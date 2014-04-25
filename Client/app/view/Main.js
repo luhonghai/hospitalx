@@ -1,19 +1,20 @@
 Ext.define('HPX.view.Main', {
-    extend: 'Ext.Panel',
+    extend: 'Ext.navigation.View',
     xtype: 'main',
-    id: "mainboard",
     requires: [
-        'Ext.TitleBar'
+        'Ext.TitleBar',
+        'HPX.view.patient.List'
     ],
     config: {
-        items: [{
-            xtype: 'titlebar',
-            title: 'Native Side Menu',
-            items: [{
-                xtype: 'button',
-                iconCls: 'list',
-                action: 'toggle-menu'
-            }]
-        }]
+        items: [ {
+            xtype: 'patients',
+            store: 'Patients'
+        }
+        ],
+        navigationBar: {
+            items: [
+
+            ]
+        }
     }
 });

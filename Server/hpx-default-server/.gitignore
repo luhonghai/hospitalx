@@ -10,4 +10,5 @@ src/test/resources/META-INF/**
 .idea
 .idea/**
 **.iml
+.DS_Store
 

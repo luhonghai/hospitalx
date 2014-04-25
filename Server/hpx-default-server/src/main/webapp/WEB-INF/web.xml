@@ -30,7 +30,7 @@
 
     <servlet>
         <servlet-name>DataNucleus</servlet-name>
-        <servlet-class>org.datanucleus.api.rest.RestServlet</servlet-class>
+        <servlet-class>org.datanucleus.api.rest.CustomRestServlet</servlet-class>
         <init-param>
             <param-name>persistence-context</param-name>
             <param-value>HPX-CORE</param-value>
