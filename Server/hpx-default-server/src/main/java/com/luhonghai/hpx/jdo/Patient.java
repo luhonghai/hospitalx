@@ -22,7 +22,7 @@ public class Patient {
     private String lastName;
 
     @Persistent
-    private int age;
+    private Date birthDay;
 
     @Persistent
     private boolean gender;
@@ -60,14 +60,6 @@ public class Patient {
         this.lastName = lastName;
     }
 
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
     public boolean isGender() {
         return gender;
     }
@@ -98,5 +90,13 @@ public class Patient {
 
     public void setCreatedDate(Date createdDate) {
         this.createdDate = createdDate;
+    }
+
+    public Date getBirthDay() {
+        return birthDay;
+    }
+
+    public void setBirthDay(Date birthDay) {
+        this.birthDay = birthDay;
     }
 }
