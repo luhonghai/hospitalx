@@ -1,0 +1,10 @@
+# built application files
+build/**
+dist/**
+target/**
+bin/**
+.idea
+.idea/**
+**.iml
+.DS_Store
+
